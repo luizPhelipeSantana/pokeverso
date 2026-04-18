@@ -1,0 +1,35 @@
+@import url('https://cdn.jsdelivr.net/fontsource/fonts/intel-one-mono:vf@latest/latin-wght-normal.woff2');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    --roxo-principal: #6A5A8B;
+    --branco-principal: #E8E2D1;
+    --vermelho: #C31C41;
+    --roxo-escuro: #2E1A47;
+    --azul-quagsire: #83D5F6;
+    --preto: #212121;
+    --fonte-principal: 'Intel One Mono Variable', monospace;
+}
+
+.roxo {
+    background-color: var(--roxo-principal);
+}
+
+.texto-branco {
+    color: var(--branco-principal);
+    font-family: var(--fonte-principal);
+}
+
+.preto {
+    color: var(--preto);
+}
+
+.azul-quagsire {
+    color: var(--azul-quagsire);
+}

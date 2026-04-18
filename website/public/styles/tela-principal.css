@@ -1,0 +1,134 @@
+.vermelho {
+    background-color: var(--vermelho);
+}
+
+.roxo-escuro {
+    background-color: var(--roxo-escuro);
+}
+
+header {
+    height: 180px;
+    display: flex;
+    padding: 0 200px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-family: var(--fonte-principal);
+    font-weight: bold;
+    font-size: 43px;
+    display: flex;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+}
+
+.links a {
+    font-weight: 700;
+    font-size: 32px;
+    transition: all 0.3s ease-in-out;
+}
+
+.links a:hover {
+    transform: scale(1.1);
+}
+
+.imagem-principal {
+    background-image: url("../assets/imgs/img-principal-fire-red.png");
+    background-size: cover;
+    background-position: center;
+    height: 780px;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+}
+
+.imagem-principal img {
+    position: sticky;
+    top: 20px;
+    bottom: 20px;
+}
+
+main .links {
+    padding-top: 170px;
+    flex-direction: column;
+    width: 100%;
+}
+
+.links .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 300px;
+}
+
+.card .conteudo {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    margin-bottom: 70px;
+    gap: 10px;
+}
+
+.conteudo h2 {
+    font-weight: 700;
+    font-size: 64px;
+}
+
+.conteudo p {
+    font-weight: 400;
+    font-size: 24px;
+    margin-left: 30px;
+    text-align: justify;
+    margin-bottom: 42px;
+    line-height: 40px;
+}
+
+.conteudo button {
+    width: 210px;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+}
+
+.conteudo button:hover {
+    transform: scale(1.1);
+}
+
+.card .imagem {
+    align-self: flex-start;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    height: 91px;
+}
+
+footer .invertido {
+    transform: rotateY(180deg);
+}
+
+footer a {
+    color: var(--texto-branco);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
