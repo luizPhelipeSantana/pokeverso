@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    border: none;
 }
 
 :root {
@@ -15,6 +16,7 @@
     --azul-quagsire: #83D5F6;
     --preto: #212121;
     --fonte-principal: 'Intel One Mono Variable', monospace;
+    --sombra-padrao: rgba(0, 0, 0, 0.3);
 }
 
 .roxo {
@@ -32,4 +34,53 @@
 
 .azul-quagsire {
     color: var(--azul-quagsire);
+}
+
+input {
+    width: 502px;
+    height: 70px;
+    background-color: var(--branco-principal);
+    font-size: 24px;
+    font-weight: lighter;
+    border-radius: 20px;
+    box-shadow: 0px 4px 4px 0px var(--sombra-padrao);
+    padding-left: 10%;
+}
+
+label {
+    font-size: 36px;
+    font-weight: 700;
+    font-family: var(--fonte-principal);
+    display: block;
+    margin-bottom: 10px;
+}
+
+.formulario button {
+    width: 360px;
+    height: 82px;
+    border-radius: 20px;
+    font-size: 40px;
+    font-weight: 700;
+    box-shadow: 0px 4px 4px 0px var(--sombra-padrao);
+}
+
+.formulario .links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.formulario p {
+    font-size: 18px;
+}
+
+.formulario a {
+    font-weight: 900;
+    transition: all 0.3s ease-in-out;
+}
+
+.formulario a:hover {
+    text-decoration: underline;
 }
