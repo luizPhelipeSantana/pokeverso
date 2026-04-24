@@ -1,0 +1,45 @@
+:root {
+    --vermelho-cadastro: #B12935;
+    --dourado: #FDE666;
+    --preto-rayquaza: #171411;
+}
+
+main {
+    width: 100vw;
+    height: 100vh;
+    background: url("../assets/imgs/cadastro/rayquaza.svg");
+    background-color: #171411;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+.formulario {
+    background-color: var(--vermelho-cadastro);
+    height: 90%;
+    gap: 5%;
+}
+
+.formulario h2, .formulario label {
+    color: var(--dourado);
+    font-family: var(--fonte-principal);
+}
+
+.formulario .links {
+    margin-top: 20%;
+}
+
+.formulario button {
+    background-color: var(--preto-rayquaza);
+}
+
+.imagem {
+    padding: 70px;
+}
+
+.imagem img {
+    cursor: pointer;
+}
