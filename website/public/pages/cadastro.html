@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="./styles/style.css">
-    <link rel="stylesheet" href="./styles/cadastro.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/cadastro.css">
+    <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
 </head>
 <body>
     <main>
@@ -39,8 +40,8 @@
 
            <!-- Links -->
            <div class="links">
-                <button class="texto-branco">
-                    <a href="#" class="texto-branco">Entrar</a>
+                <button class="texto-branco" onclick="cadastroHtml()">
+                    <a href="./favoritos.html" class="texto-branco">Entrar</a>
                 </button>
 
                 <p class="texto-branco">
@@ -50,10 +51,22 @@
         </div>
 
         <div class="imagem">
-            <a href="./index.html">
-                <img src="./assets/icons/logout.svg" alt="">
+            <a href="../index.html">
+                <img src="../assets/icons/logout.svg" alt="">
             </a>
         </div>
     </main>
 </body>
+
+<script src="../script/cadastro.js"></script>
+
+<script>
+    function cadastroHtml() {
+        let nomeVar = ipt_nome.value;
+        let emailVar = ipt_email.value;
+        let senhaVar = ipt_senha.value;
+
+        cadastro(nomeVar, emailVar, senhaVar);
+    }
+</script>
 </html> 

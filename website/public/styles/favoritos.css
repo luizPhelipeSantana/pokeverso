@@ -1,0 +1,34 @@
+main {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--azul-quagsire);
+}
+
+.formulario {
+    background-color: var(--roxo-principal);
+    height: 90%;
+    gap: 5%;
+}
+
+.formulario h2, .formulario label {
+    font-family: var(--fonte-principal);
+    color: var(--azul-quagsire);
+}
+
+.formulario .inputs {
+    margin-bottom: 100px;
+}
+
+.imagem img {
+    width: 520px;
+    height: 550px;
+}
+
+button {
+    background-color: var(--azul-quagsire);
+    font-family: var(--fonte-principal);
+    color: var(--preto) !important;
+}

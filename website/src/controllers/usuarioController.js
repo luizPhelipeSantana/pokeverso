@@ -53,10 +53,12 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
-    var fkEmpresa = req.body.idEmpresaVincularServer;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var senha = req.body.senha;
+    var id_pokemon_favorito = req.body.id_pokemon_favorito;
+    var id_jogo_favorito = req.body.id_jogo_favorito;
+    var id_geracao_favorita = req.body.id_geracao_favorita;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -65,12 +67,17 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
-        res.status(400).send("Sua empresa a vincular está undefined!");
+    } else if (id_pokemon_favorito == undefined) {
+        res.status(400).send("Seu pokemon favorito está undefined!");
+    }
+    else if (id_jogo_favorito == undefined) {
+        res.status(400).send("Seu jogo favorito está undefined!");
+    }
+    else if (id_geracao_favorita == undefined) {
+        res.status(400).send("Sua geração favorita está undefined!");
     } else {
-
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, id_pokemon_favorito, id_jogo_favorito, id_geracao_favorita)
             .then(
                 function (resultado) {
                     res.json(resultado);

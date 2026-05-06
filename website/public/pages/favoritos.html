@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokeverso</title>
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/favoritos.css">
+    <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
+</head>
+<body>
+    <main>
+        <!-- Primeira imagem -->
+        <div class="imagem">
+            <img src="../assets/imgs/favoritos/quagsire-1.svg" alt="Quagsire" class="quagsire-1">
+        </div>
+
+        <!-- Formulario -->
+        <div class="formulario">
+            <h2>
+                Favoritos
+            </h2>
+
+            <!-- Inputs-->
+            <div class="inputs">
+                <!-- Pokemon favorito -->
+                <div>
+                    <label for="ipt_pokemon_favorito">
+                        Pokémon favorito
+                    </label>
+                    <input type="text" id="ipt_pokemon_favorito" placeholder="Quagsire">
+                </div>
+
+                <!-- Jogo favorito -->
+                <div>
+                    <label for="ipt_jogo_favorito">
+                        Jogo favorito
+                    </label>
+                    <input type="text" id="ipt_jogo_favorito" placeholder="Fire red">
+                </div>
+
+                <!-- Geração favorita -->
+                <div>
+                    <label for="ipt_geracao_favorita">
+                        Geração favorita
+                    </label>
+                    <input type="text" id="ipt_geracao_favorita" placeholder="Primeira geração">
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="links">
+                <button class="texto-branco" onclick="favoritosHtml()">
+                    Entrar
+                </button>
+            </div>
+        </div>
+
+        <!-- Segunda imagem -->
+        <div class="imagem">
+            <img src="../assets/imgs/favoritos/quagsire-2.svg" alt="Quagsire" class="quagsire-1">
+        </div>
+    </main>
+</body>
+
+<script src="../script/cadastro.js"></script>
+
+<script>
+     function favoritosHtml() {
+        let pokemon_favorito = ipt_pokemon_favorito.value;
+        let jogo_favorito = ipt_jogo_favorito.value;
+        let geracao_favorita = ipt_geracao_favorita.value;
+
+        let res = favorito(pokemon_favorito, jogo_favorito, geracao_favorita);
+     }
+</script>
+</html>

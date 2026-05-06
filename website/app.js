@@ -21,6 +21,9 @@ var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
+var pokemonRouter = require("./src/routes/pokemon");
+var jogoRouter = require("./src/routes/jogo");
+var geracaoRouter = require("./src/routes/geracao");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +37,9 @@ app.use("/avisos", avisosRouter);
 app.use("/medidas", medidasRouter);
 app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
+app.use("/pokemon", pokemonRouter);
+app.use("/jogo", jogoRouter);
+app.use("/geracao", geracaoRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
