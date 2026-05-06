@@ -44,8 +44,8 @@
 
             <!-- Botões -->
             <div class="links">
-                <button class="texto-branco">
-                    <a href="#" class="texto-branco">Entrar</a>
+                <button class="texto-branco" onclick="entrar()">
+                    Entrar
                 </button>
 
                 <p class="texto-branco">
@@ -70,4 +70,60 @@
         </div>
     </main>
 </body>
+
+<script>
+    function entrar() {
+        let emailVar = ipt_email.value;
+        let senhaVar = ipt_senha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            alert("Preencha todos os campos");
+        }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ADMIN = json.admin;
+                    sessionStorage.COR_PRINCIPAL = json.cor_principal;
+                    sessionStorage.COR_SECUNDARIA = json.cor_secundaria;
+                    sessionStorage.FOTO_URL = json.foto_url;
+
+                    window.location = "./home.html";
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                    alert("Erro ao tentar fazer login");
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+</script>
 </html>

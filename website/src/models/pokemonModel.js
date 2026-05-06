@@ -6,4 +6,10 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { listar };
+function pokemonUsuario(id) {
+  var instrucaoSql = `SELECT cor_principal, cor_secundaria, foto_url FROM pokemon WHERE id_pokemon = ${id}`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { listar, pokemonUsuario };

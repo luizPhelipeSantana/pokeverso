@@ -115,6 +115,8 @@ function cadastrar() {
 
     if (resposta.ok) {
         alert("Cadastrou");
+
+         window.location = "./login.html";
     } else {
         throw "Houve um erro ao tentar realizar o cadastro!";
     }
