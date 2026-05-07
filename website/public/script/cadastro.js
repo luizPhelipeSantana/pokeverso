@@ -9,13 +9,11 @@ function cadastro(nome, email, senha) {
 }
 
 function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
-    // 1. Busca os Pokémons
     fetch("/pokemon/listar")
         .then(resposta => resposta.json())
         .then(listaPokemon => {
             let pokemon_id = -1;
 
-            // Procura o Pokémon na lista recebida
             for (let i = 0; i < listaPokemon.length; i++) {
                 if (listaPokemon[i].nome == pokemon_favorito) {
                     pokemon_id = Number(listaPokemon[i].id_pokemon);
@@ -28,7 +26,6 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
                 return; 
             }
 
-            // 2. SE achou o pokemon, busca os Jogos (DENTRO do then do pokemon)
             fetch("/jogo/listar")
                 .then(resposta => resposta.json())
                 .then(listaJogos => {
@@ -46,7 +43,6 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
                         return;
                     }
 
-                    // 3. SE achou o jogo, busca as Gerações
                     fetch("/geracao/listar")
                         .then(resposta => resposta.json())
                         .then(listaGeracoes => {
@@ -64,7 +60,6 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
                                 return;
                             }
 
-                            // 4. Se chegou aqui, todos existem. Salva e cadastra.
                             let favoritos = {
                                 id_pokemon_favorito: pokemon_id,
                                 id_jogo_favorito: jogo_id,
@@ -94,7 +89,6 @@ function cadastrar() {
         id_geracao_favorita: null
     };
 
-    // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {

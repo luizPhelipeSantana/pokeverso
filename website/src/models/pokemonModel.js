@@ -12,4 +12,10 @@ function pokemonUsuario(id) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { listar, pokemonUsuario };
+function autoComplete(nome) {
+  var instrucaoSql = `SELECT nome FROM pokemon WHERE nome LIKE '${nome}%' LIMIT 10`;
+
+  return database.executar(instrucaoSql);
+}
+
+module.exports = { listar, pokemonUsuario, autoComplete };

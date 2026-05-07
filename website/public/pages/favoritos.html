@@ -29,7 +29,13 @@
                     <label for="ipt_pokemon_favorito">
                         Pokémon favorito
                     </label>
-                    <input type="text" id="ipt_pokemon_favorito" placeholder="Quagsire">
+                    <input type="text" id="ipt_pokemon_favorito" placeholder="Quagsire" onkeyup="auto_complete()">
+
+                    <div class="div_auto_complete">
+                        <ul id="lista_pokemon">
+
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Jogo favorito -->
@@ -74,5 +80,38 @@
 
         let res = favorito(pokemon_favorito, jogo_favorito, geracao_favorita);
      }
+
+
+    function auto_complete() {
+        let pokemon = ipt_pokemon_favorito.value.trim();
+
+        if (!pokemon || pokemon.length < 0) {
+            return;
+        }
+
+        fetch("/pokemon/autocomplete/" + pokemon)
+            .then(resposta => {
+                if (resposta.ok) {
+                    return resposta.json();
+                }
+                else {
+                    console.log("Erro" + resposta.status);
+                }
+            })
+            .then(listaPokemon => {
+                lista_pokemon.innerHTML = "";
+
+                for (let i = 0; i < listaPokemon.length; i++) {
+                    lista_pokemon.innerHTML += `
+                        <li onclick="alterarInput(1, '${listaPokemon[i].nome}')">
+                            ${listaPokemon[i].nome}
+                        </li>
+                    `;
+                }
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
 </script>
 </html>
