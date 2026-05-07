@@ -19,6 +19,37 @@
     --sombra-padrao: rgba(0, 0, 0, 0.3);
 }
 
+header {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    padding: 0 200px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    height: 91px;
+}
+
+footer .invertido {
+    transform: rotateY(180deg);
+}
+
+footer a {
+    color: var(--texto-branco);
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
 .roxo {
     background-color: var(--roxo-principal);
 }
