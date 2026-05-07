@@ -6,5 +6,11 @@ function listar() {
   return database.executar(instrucaoSql);
 }
 
+function autoComplete(nome) {
+  var instrucaoSql = `SELECT nome FROM geracoes WHERE nome LIKE '%${nome}%' LIMIT 10`;
 
-module.exports = { listar };
+  return database.executar(instrucaoSql);
+}
+
+
+module.exports = { listar, autoComplete };

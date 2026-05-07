@@ -9,6 +9,6 @@ router.get("/listar", function (req, res) {
 
 router.get("/autocomplete/:nome", function (req, res) {
     pokemonController.autoComplete(req, res);
-})
+});
 
 module.exports = router;

@@ -43,10 +43,12 @@
                     <label for="ipt_jogo_favorito">
                         Jogo favorito
                     </label>
-                    <input type="text" id="ipt_jogo_favorito" placeholder="Fire red" onkeyup="auto_complete('jogos')" onblur="tirar_auto_complete('jogos')" autocomplete="off">
-                    <ul id="lista_jogos" class="lista_auto_complete">
+                    <div class="div_auto_complete">
+                        <input type="text" id="ipt_jogo_favorito" placeholder="Fire red" onkeyup="auto_complete('jogos')" onblur="tirar_auto_complete('jogos')" autocomplete="off">
+                        <ul id="lista_jogos" class="lista_auto_complete">
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
 
                 <!-- Geração favorita -->
@@ -54,10 +56,13 @@
                     <label for="ipt_geracao_favorita">
                         Geração favorita
                     </label>
-                    <input type="text" id="ipt_geracao_favorita" placeholder="Primeira geração" onkeyup="auto_complete('geracoes')" onblur="tirar_auto_complete('geracoes')" autocomplete="off">
-                    <ul id="lista_geracoes" class="lista_auto_complete">
 
-                    </ul>
+                    <div class="div_auto_complete">
+                        <input type="text" id="ipt_geracao_favorita" placeholder="Primeira geração" onkeyup="auto_complete('geracoes')" onblur="tirar_auto_complete('geracoes')" autocomplete="off">
+                        <ul id="lista_geracoes" class="lista_auto_complete">
+
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -89,9 +94,9 @@
 
 
     function auto_complete(input) {
-        let pokemon = ipt_pokemon_favorito.value.trim();
-
         if (input == "pokemon") {
+            let pokemon = ipt_pokemon_favorito.value.trim();
+
             fetch("/pokemon/autocomplete/" + pokemon)
             .then(resposta => {
                 if (resposta.ok) {
@@ -106,7 +111,7 @@
 
                 for (let i = 0; i < listaPokemon.length; i++) {
                     lista_pokemon.innerHTML += `
-                        <li onclick="alterarInput('ipt_pokemon_favorito', '${listaPokemon[i].nome}')">
+                        <li onclick="alterarInput('pokemon', '${listaPokemon[i].nome}')">
                             <img src="${listaPokemon[i].foto_url}" class="imagem_auto_complete">
                             ${listaPokemon[i].nome}
                         </li>
@@ -121,15 +126,93 @@
                 console.log(erro);
             })
         }
+        else if (input == "jogos") {
+            let jogo = ipt_jogo_favorito.value.trim();
+
+            fetch("/jogo/autocomplete/" + jogo)
+                .then(resposta => {
+                    if (resposta.ok) {
+                        return resposta.json();
+                    }
+                    else {
+                        console.log("Erro" + resposta.status);
+                    }
+                })
+                .then(listaJogos => {
+                    lista_jogos.innerHTML = "";
+
+                    for (let i = 0; i < listaJogos.length; i++) {
+                        lista_jogos.innerHTML += `
+                            <li onclick="alterarInput('jogos', '${listaJogos[i].nome}')">
+                                ${listaJogos[i].nome}
+                            </li>
+                        `;
+                    }
+
+                    if (listaJogos.length <= 0) {
+                        lista_jogos.innerHTML = "";
+                    }
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                })
+        }
+        else if (input == "geracoes") {
+            let geracao = ipt_geracao_favorita.value.trim();
+
+            fetch("/geracao/autocomplete/" + geracao)
+                .then(resposta => {
+                    if (resposta.ok) {
+                        return resposta.json();
+                    }
+                    else {
+                        console.log("Erro" + resposta.status);
+                    }
+                })
+                .then(listaGeracoes => {
+                    lista_geracoes.innerHTML = "";
+
+                    for (let i = 0; i < listaGeracoes.length; i++) {
+                        lista_geracoes.innerHTML += `
+                            <li onclick="alterarInput('geracoes', '${listaGeracoes[i].nome}')">
+                                ${listaGeracoes[i].nome}
+                            </li>
+                        `;
+                    }
+
+                    if (listaGeracoes.length <= 0) {
+                        lista_geracoes.innerHTML = "";
+                    }
+                })
+                .catch((erro) => {
+                    console.log(erro);
+                })
+        }
     }
 
     function alterarInput(input, valor) {
-        ipt_pokemon_favorito.value = valor;
+        if (input == "pokemon") {
+            ipt_pokemon_favorito.value = valor;
+        }
+        else if (input == "jogos") {
+            ipt_jogo_favorito.value = valor;
+        }
+        else if (input == "geracoes") {
+            ipt_geracao_favorita.value = valor;
+        }
     }
 
     function tirar_auto_complete(input) {
         if (input == "pokemon") {
             setTimeout(() => lista_pokemon.innerHTML = "",
+            100);
+        }
+        else if (input == "jogos") {
+            setTimeout(() => lista_jogos.innerHTML = "",
+            100);
+        }
+        else if (input == "geracoes") {
+            setTimeout(() => lista_geracoes.innerHTML = "",
             100);
         }
     }
