@@ -13,7 +13,7 @@ function pokemonUsuario(id) {
 }
 
 function autoComplete(nome) {
-  var instrucaoSql = `SELECT nome FROM pokemon WHERE nome LIKE '${nome}%' LIMIT 10`;
+  var instrucaoSql = `SELECT nome, foto_url FROM pokemon WHERE nome LIKE '${nome}%' LIMIT 10`;
 
   return database.executar(instrucaoSql);
 }

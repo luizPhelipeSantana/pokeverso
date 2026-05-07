@@ -29,10 +29,10 @@
                     <label for="ipt_pokemon_favorito">
                         Pokémon favorito
                     </label>
-                    <input type="text" id="ipt_pokemon_favorito" placeholder="Quagsire" onkeyup="auto_complete()">
 
                     <div class="div_auto_complete">
-                        <ul id="lista_pokemon">
+                        <input type="text" id="ipt_pokemon_favorito" placeholder="Quagsire" onkeyup="auto_complete('pokemon')" onblur="tirar_auto_complete('pokemon')" autocomplete="off">
+                        <ul id="lista_pokemon" class="lista_auto_complete">
 
                         </ul>
                     </div>
@@ -43,7 +43,10 @@
                     <label for="ipt_jogo_favorito">
                         Jogo favorito
                     </label>
-                    <input type="text" id="ipt_jogo_favorito" placeholder="Fire red">
+                    <input type="text" id="ipt_jogo_favorito" placeholder="Fire red" onkeyup="auto_complete('jogos')" onblur="tirar_auto_complete('jogos')" autocomplete="off">
+                    <ul id="lista_jogos" class="lista_auto_complete">
+
+                    </ul>
                 </div>
 
                 <!-- Geração favorita -->
@@ -51,7 +54,10 @@
                     <label for="ipt_geracao_favorita">
                         Geração favorita
                     </label>
-                    <input type="text" id="ipt_geracao_favorita" placeholder="Primeira geração">
+                    <input type="text" id="ipt_geracao_favorita" placeholder="Primeira geração" onkeyup="auto_complete('geracoes')" onblur="tirar_auto_complete('geracoes')" autocomplete="off">
+                    <ul id="lista_geracoes" class="lista_auto_complete">
+
+                    </ul>
                 </div>
             </div>
 
@@ -82,14 +88,11 @@
      }
 
 
-    function auto_complete() {
+    function auto_complete(input) {
         let pokemon = ipt_pokemon_favorito.value.trim();
 
-        if (!pokemon || pokemon.length < 0) {
-            return;
-        }
-
-        fetch("/pokemon/autocomplete/" + pokemon)
+        if (input == "pokemon") {
+            fetch("/pokemon/autocomplete/" + pokemon)
             .then(resposta => {
                 if (resposta.ok) {
                     return resposta.json();
@@ -103,15 +106,32 @@
 
                 for (let i = 0; i < listaPokemon.length; i++) {
                     lista_pokemon.innerHTML += `
-                        <li onclick="alterarInput(1, '${listaPokemon[i].nome}')">
+                        <li onclick="alterarInput('ipt_pokemon_favorito', '${listaPokemon[i].nome}')">
+                            <img src="${listaPokemon[i].foto_url}" class="imagem_auto_complete">
                             ${listaPokemon[i].nome}
                         </li>
                     `;
+                }
+
+                if (listaPokemon.length <= 0) {
+                    lista_pokemon.innerHTML = "";
                 }
             })
             .catch((erro) => {
                 console.log(erro);
             })
+        }
+    }
+
+    function alterarInput(input, valor) {
+        ipt_pokemon_favorito.value = valor;
+    }
+
+    function tirar_auto_complete(input) {
+        if (input == "pokemon") {
+            setTimeout(() => lista_pokemon.innerHTML = "",
+            100);
+        }
     }
 </script>
 </html>

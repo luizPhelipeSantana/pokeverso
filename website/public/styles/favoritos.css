@@ -38,10 +38,50 @@ button {
 }
 
 .div_auto_complete {
-    position: fixed;
-    top: 10px;
-    left: 250px;
-    width: 200px;
-    height: 200px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.lista_auto_complete {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    max-height: 350px;
+    overflow-y: auto;
+    top: 100%;
+    left: 0;
+    right: 0;
     background-color: #fff;
+    border-radius: 10px;
+    list-style-type: none;
+}
+
+.lista_auto_complete li {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    text-decoration: none;
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--preto-charizard);
+    width: 100%;
+    cursor: pointer;
+    padding: 5px;
+    margin: 10px 0;
+    padding: 5px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.lista_auto_complete li:hover {
+    background-color: #f0f0f0;
+}
+
+.imagem_auto_complete {
+    width: 60px;
+    height: 50px;
 }
