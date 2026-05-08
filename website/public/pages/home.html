@@ -10,17 +10,17 @@
 
     <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
 </head>
-<body>
-    <header class="roxo">
+<body onload="principal()">
+    <header class="roxo" id="header">
         <!-- Área do usuario -->
         <div class="info-usuario">
             <!-- Imagem usuario -->
-            <div class="area-imagem-usuario">
+            <div class="area-imagem-usuario" id="area_imagem">
                 <img src="../assets/imgs/home/icon-charizrd.svg" alt="">
             </div>
 
             <!-- Nome do usuario -->
-            <h2>
+            <h2 id="nome_usuario">
                 Mega Charizard X
             </h2>
         </div>
@@ -66,7 +66,7 @@
     </main>
 
 
-    <footer class="roxo">
+    <footer class="roxo" id="footer">
         <img src="../assets/imgs/master-ball.svg" alt="Master ball" class="invertido">
 
         <p class="texto-branco">
@@ -76,4 +76,17 @@
         <img src="../assets/imgs/master-ball.svg" alt="Master ball">
     </footer>
 </body>
+
+<script>
+    function principal() {
+        nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+        nome_usuario.style.color = sessionStorage.COR_SECUNDARIA;
+        area_imagem.innerHTML = `
+            <img src="${sessionStorage.FOTO_URL}">
+        `;
+
+        header.style.backgroundColor = sessionStorage.COR_PRINCIPAL;
+        footer.style.backgroundColor = sessionStorage.COR_PRINCIPAL;
+    }
+</script>
 </html>
