@@ -12,4 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
+router.get("/existe/:email", function (req, res) {
+    usuarioController.listarEmail(req, res);
+})
+
 module.exports = router;

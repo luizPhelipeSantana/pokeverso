@@ -54,7 +54,7 @@
                         Descubra os principais elementos dos jogos de Pokémon, incluindo mecânicas, evolução das gerações e novidades que marcaram cada fase da franquia. Ao acessar esta seção, você verá detalhes sobre como os jogos funcionam e o que torna cada título único.
                     </p>
 
-                    <button class="texto-branco vermelho">
+                    <button class="texto-branco vermelho" onclick="redirecionarLogin()">
                         Sobre o jogo
                     </button>
                 </div>
@@ -82,7 +82,7 @@
                         Os jogos de Pokémon passaram por diversas mudanças ao longo dos anos, com novas mecânicas, regiões e criaturas a cada geração. Com o avanço da tecnologia, gráficos e jogabilidade evoluíram, tornando a experiência mais imersiva e popular entre diferentes públicos.
                     </p>
 
-                    <button class="texto-branco vermelho">
+                    <button class="texto-branco vermelho" onclick="redirecionarLogin()">
                         Evolução dos jogos
                     </button>
                 </div>
@@ -100,7 +100,7 @@
                         Teste seus conhecimentos sobre Pokémon respondendo perguntas sobre os personagens. Ao acessar esta seção, você poderá desafiar seu nível, aprender novas informações
                     </p>
 
-                    <button class="texto-branco vermelho">
+                    <button class="texto-branco vermelho" onclick="redirecionarLogin()">
                         Quiz
                     </button>
                 </div>
@@ -123,4 +123,10 @@
         <img src="./assets/imgs/master-ball.svg" alt="Master ball">
     </footer>
 </body>
+
+<script>
+    function redirecionarLogin() {
+        window.location = "./pages/login.html"
+    }
+</script>
 </html>

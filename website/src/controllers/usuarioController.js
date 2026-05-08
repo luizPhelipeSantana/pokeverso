@@ -100,7 +100,17 @@ function cadastrar(req, res) {
     }
 }
 
+function listarEmail(req, res) {
+    let email = req.params.email;
+
+    usuarioModel.listarEmail(email)
+        .then((resultado) => {
+            res.status(200).json(resultado);
+        });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listarEmail
 }

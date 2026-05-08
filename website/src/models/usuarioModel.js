@@ -22,7 +22,14 @@ function cadastrar(nome, email, senha, id_pokemon_favorito, id_jogo_favorito, id
     return database.executar(instrucaoSql);
 }
 
+function listarEmail(email) {
+    var instrucaoSql = `SELECT * FROM usuario WHERE email = '${email}'`;
+
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    listarEmail
 };

@@ -5,7 +5,18 @@ function cadastro(nome, email, senha) {
         senha: senha
     };
 
-    localStorage.setItem("usuario", JSON.stringify(usuario));
+    fetch("/usuarios/existe/" + email)
+        .then(resposta => resposta.json())
+        .then((listaUsuarios) => {
+            if (listaUsuarios.length >= 1) {
+                alert("Esse usuario já existe")
+            }
+            else {
+                localStorage.setItem("usuario", JSON.stringify(usuario));
+
+                window.location = "./favoritos.html";
+            }
+        });
 }
 
 function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
@@ -89,9 +100,10 @@ function cadastrar() {
         id_geracao_favorita: null
     };
 
+
     fetch("/usuarios/cadastrar", {
         method: "POST",
-        headers: {
+        hjeaders: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
