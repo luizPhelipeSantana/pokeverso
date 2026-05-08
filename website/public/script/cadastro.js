@@ -101,9 +101,9 @@ function cadastrar() {
     };
 
 
-    fetch("/usuarios/cadastrar", {
+    fetch("/usuarios/cadastrar/", {
         method: "POST",
-        hjeaders: {
+        headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({

@@ -87,3 +87,14 @@ main {
     background-color: var(--roxo-nidoking);
     color: var(--branco-nidoking);
 }
+
+.logout-admin {
+    display: flex;
+    align-items: center;
+}
+
+#admin_area a {
+    font-size: 32px;
+    font-weight: bold;
+    margin-right: 100px;
+}

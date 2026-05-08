@@ -25,11 +25,17 @@
             </h2>
         </div>
 
-        <!-- Logout -->
-        <div class="imagem">
-            <a href="../index.html">
-                <img src="../assets/icons/logout.svg" alt="">
-            </a>
+        <div class="logout-admin">
+            <div id="admin_area">
+                
+            </div>
+
+            <!-- Logout -->
+            <div class="imagem">
+                <a href="../index.html">
+                    <img src="../assets/icons/logout.svg" alt="">
+                </a>
+            </div>
         </div>
     </header>
 
@@ -87,6 +93,12 @@
 
         header.style.backgroundColor = sessionStorage.COR_PRINCIPAL;
         footer.style.backgroundColor = sessionStorage.COR_PRINCIPAL;
+
+        if (sessionStorage.ADMIN >= 1) {
+            admin_area.innerHTML = `
+                <a href="" class="texto-branco">Dashboard</a>
+            `;
+        }
     }
 </script>
 </html>
