@@ -10,7 +10,11 @@
 
     <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
 </head>
-<body>
+<body onload="carregarPokemon()">
+    <div class="modal_resultado" id="modal_resultado">
+        
+    </div>
+
     <main>
         <!-- Primeira imagem -->
         <div class="imagem">
@@ -112,8 +116,9 @@
 </body>
 
 <script>
-    const idPokemonSorteado = Math.round(Math.random() * 1086 - 1) + 1;
-    const pokemon = {
+    let idPokemonSorteado = 1;
+    let tentativas = 0;
+    let pokemon = {
         "id": idPokemonSorteado,
         "nome": "",
         "tipo_1": "",
@@ -125,56 +130,52 @@
         if (evento.key == "Enter") {
             enviar();
         }
-    })
+    });
 
-    fetch("/pokemon/" + idPokemonSorteado)
-        .then(resposta => {
-            if (resposta.ok) {
-                if (resposta.status === 204) return null;
-                return resposta.json();
-            }
-            else {
-                console.log("Erro: " + resposta.status);
-            }
-        })
-        .then(listaPokemon => {
-            if (listaPokemon <= 0) {
-                console.error("Nenhum pokémon foi encontrado");
-            }
+    function carregarPokemon() {
+        idPokemonSorteado = Math.round(Math.random() * 1086 - 1) + 1;
+        pokemon = {
+            "id": idPokemonSorteado,
+            "nome": "",
+            "tipo_1": "",
+            "tipo_2": "",
+            "geracao": ""
+        }
 
-            pokemon.nome = listaPokemon[0].nome;
-            pokemon.tipo_1 = listaPokemon[0].tipagem_1;
-            pokemon.tipo_2 = listaPokemon[0].tipagem_2;
-            pokemon.geracao = listaPokemon[0].id_geracao;
+        tentativas = 0;
+        modal_resultado.style.display = "none";
+        respostas.innerHTML = "";
 
-        })
-        .catch((erro) => {
-            console.log(erro);
-        })
+        fetch("/pokemon/" + idPokemonSorteado)
+            .then(resposta => {
+                if (resposta.ok) {
+                    if (resposta.status === 204) return null;
+                    return resposta.json();
+                }
+                else {
+                    console.log("Erro: " + resposta.status);
+                }
+            })
+            .then(listaPokemon => {
+                if (listaPokemon <= 0) {
+                    console.error("Nenhum pokémon foi encontrado");
+                }
 
+                pokemon.nome = listaPokemon[0].nome;
+                pokemon.tipo_1 = listaPokemon[0].tipagem_1;
+                pokemon.tipo_2 = listaPokemon[0].tipagem_2;
+                pokemon.geracao = listaPokemon[0].id_geracao;
 
-    /*
-        <div class="resposta">
-            <div class="quadrado"></div>
-            <div class="quadrado">
-                <h3></h3>
-            </div>
-            <div class="quadrado">
-                <h3></h3>
-            </div>
-            <div class="quadrado">
-                <h3></h3>
-            </div>
-            <div class="quadrado">
-                <h3></h3>
-            </div>
-        </div>
-    */
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
 
     function enviar() {
         let pokemonNome = ipt_pokemon.value.trim();
         ipt_pokemon.value = "";
-
+        tentativas++;
 
         fetch("/pokemon/quiz/" + pokemonNome)
             .then(resposta => {
@@ -246,6 +247,33 @@
                 `;
 
                 respostas.innerHTML += resposta;
+
+                if (id == idPokemonSorteado) {
+                    modal_resultado.innerHTML = `
+                        <h2>
+                            Parabéns você acertou
+                        </h2>
+
+                        <div class="imagem-area">
+                            <div class="imagem_pokemon" style="background-image: url('${imagem}');">
+
+                            </div>
+
+                            <p style="font-size: 20px;">${nome}</p>
+                        </div>
+
+                        <p>
+                            Você acertou em ${tentativas} tentativas
+                        </p>
+
+                        <button onclick="carregarPokemon()">
+                            Continuar
+                        </button>
+                    `;
+
+                    setTimeout(() => modal_resultado.style.display = "flex", 
+                    100);
+                }
             })
             .catch((erro) => {
                 console.log(erro);

@@ -131,3 +131,52 @@ main {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.modal_resultado {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 15%;
+    left: 37%;
+    width: 450px;
+    height: 600px;
+    background-color: #fff;
+    z-index: 1000000000;
+    border-radius: 20px;
+    padding: 30px 0;
+    box-shadow: 0 4px 4px 0 var(--sombra-padrao);
+}
+
+.modal_resultado h2 {
+    font-family: var(--fonte-principal);
+    font-size: 32px;
+}
+
+.modal_resultado .imagem_pokemon {
+    width: 210px;
+    height: 210px;
+    margin-bottom: 50px;
+}
+
+.modal_resultado p {
+    font-family: var(--fonte-principal);
+    font-size: 20px;
+}
+
+.modal_resultado button {
+    background-color: var(--verde-escuro);
+    width: 150px;
+    height: 60px;
+    border-radius: 10px;
+    color: var(--branco-principal);
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.imagem-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
