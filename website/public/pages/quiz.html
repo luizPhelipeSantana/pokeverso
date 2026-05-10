@@ -109,4 +109,48 @@
         </div>
     </main>
 </body>
+
+<script>
+    function tirar_auto_complete() {
+        setTimeout(() => lista_pokemon.innerHTML = "",
+        100);
+    }
+
+    function alterarInput(pokemon) {
+        ipt_pokemon.value = pokemon;
+    }
+
+    function auto_complete() {
+        let pokemon = ipt_pokemon.value.trim();
+
+        fetch("/pokemon/autocomplete/" + pokemon)
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+            else {
+                console.log("Erro" + resposta.status);
+            }
+        })
+        .then(listaPokemon => {
+            lista_pokemon.innerHTML = "";
+
+            for (let i = 0; i < listaPokemon.length; i++) {
+                lista_pokemon.innerHTML += `
+                    <li onclick="alterarInput('${listaPokemon[i].nome}')">
+                        <img src="${listaPokemon[i].foto_url}" class="imagem_auto_complete">
+                        ${listaPokemon[i].nome}
+                    </li>
+                `;
+            }
+
+            if (listaPokemon.length <= 0) {
+                lista_pokemon.innerHTML = "";
+            }
+        })
+        .catch((erro) => {
+            console.log(erro);
+        })
+    }
+</script>
 </html>
