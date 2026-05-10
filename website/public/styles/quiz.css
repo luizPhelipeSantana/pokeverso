@@ -13,7 +13,7 @@ main {
 }
 
 .imagem img {
-    width: 800px;
+    width: 700px;
     height: 640px;
     margin-bottom: 100px;
     align-self: center;
@@ -179,4 +179,16 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.imagem-sair {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.logout {
+    margin: 20px 10%;
+    cursor: pointer;
 }
