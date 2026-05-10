@@ -18,9 +18,8 @@ main {
 
 .info-usuario {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 400px;
+    width: 50%;
 }
 
 .info-usuario .area-imagem-usuario {
@@ -28,9 +27,10 @@ main {
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 115px;
+    height: 115px;
     background-color: var(--azul-charizard);
+    margin-right: 20px;
 }
 
 .area-imagem-usuario img {

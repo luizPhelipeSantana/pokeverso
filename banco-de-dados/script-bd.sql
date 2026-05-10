@@ -1,6 +1,10 @@
 CREATE DATABASE pokeverso;
 USE pokeverso;
 
+CREATE USER 'usr_pokeverso'@'localhost' IDENTIFIED BY 'Po158575';
+GRANT ALL PRIVILEGES ON pokeverso.* TO 'usr_pokeverso'@'localhost';
+FLUSH PRIVILEGES;
+
 CREATE TABLE geracoes (
 	id_geracao INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
@@ -31,7 +35,7 @@ CREATE TABLE pokemon (
 CREATE TABLE usuario (
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    email VARCHAR(45) NOT NULL,
+    email VARCHAR(45) UNIQUE NOT NULL,
     senha VARCHAR(45) NOT NULL,
     admin TINYINT DEFAULT 0 NOT NULL,
     id_pokemon_favorito INT,
@@ -44,15 +48,15 @@ CREATE TABLE usuario (
 );
 
 INSERT INTO geracoes (nome, lancamento, qtd_pokemon) VALUES
-	('Geração I', '1996-02-27', 151),
-    ('Geração II', '1999-11-21', 100),
-    ('Geração III', '2002-11-21', 135),
-    ('Geração IV', '2006-09-28', 107),
-    ('Geração V', '2010-09-18', 156),
-    ('Geração VI', '2013-10-12', 72),
-    ('Geração VII', '2016-11-18', 88),
-    ('Geração VIII', '2019-11-15', 96),
-    ('Geração IX', '2022-11-18', 120);
+	('Primeira Geração I', '1996-02-27', 151),
+    ('Segunda Geração II', '1999-11-21', 100),
+    ('Terceira Geração III', '2002-11-21', 135),
+    ('Quarta Geração IV', '2006-09-28', 107),
+    ('Quinta Geração V', '2010-09-18', 156),
+    ('Sexta Geração VI', '2013-10-12', 72),
+    ('Sétima Geração VII', '2016-11-18', 88),
+    ('Oitava Geração VIII', '2019-11-15', 96),
+    ('Nona Geração IX', '2022-11-18', 120);
     
 SELECT * FROM geracoes;
     
@@ -104,11 +108,6 @@ INSERT INTO jogos (nome, lancamento, id_geracao) VALUES
 	-- Gen 9
 	('Pokémon Scarlet', '2022-11-18', 9),
 	('Pokémon Violet', '2022-11-18', 9);
-
-SELECT * FROM jogos;
-
-INSERT INTO usuario (nome, email, senha, admin) VALUES
-	('Quagsire', 'exemplo@email.com', '@Senha242', 1);
     
 -- Primeira geração de pokemon
 INSERT INTO pokemon (nome, tipagem_1, tipagem_2, foto_url, cor_principal, cor_secundaria, id_geracao) VALUES
@@ -1222,6 +1221,9 @@ INSERT INTO pokemon (nome, tipagem_1, tipagem_2, foto_url, cor_principal, cor_se
 	('Chi-Yu','Sombrio','Fogo','https://img.pokemondb.net/artwork/avif/chi-yu.avif','#C0392B','#F39C12',9),
 	('Koraidon','Lutador','Dragão','https://img.pokemondb.net/artwork/avif/koraidon.avif','#C0392B','#1C1C1C',9),
 	('Miraidon','Elétrico','Dragão','https://img.pokemondb.net/artwork/avif/miraidon.avif','#8E44AD','#2E86C1',9);
+    
+INSERT INTO usuario (nome, email, senha, admin, id_pokemon_favorito, id_jogo_favorito, id_geracao_favorita) VALUES
+	('Quagsire admin', 'admin@email.com', '@Senha242', 1, 195, 10, 1);
 
 SELECT * FROM pokemon;
 SELECT COUNT(*) FROM pokemon;
@@ -1235,3 +1237,21 @@ SELECT * FROM pokemon WHERE id_geracao = 6;
 SELECT * FROM pokemon WHERE id_geracao = 7;
 SELECT * FROM pokemon WHERE id_geracao = 8;
 SELECT * FROM pokemon WHERE id_geracao = 9;
+
+SELECT * FROM usuario;
+
+use pokeverso;
+
+SELECT 
+u.nome nome_usuario,
+u.email email_usuario,
+p.nome pokemon_favorito,
+j.nome jogo_favorito,
+g.nome geracao_favorito
+FROM usuario u
+JOIN pokemon p
+ON u.id_pokemon_favorito = p.id_pokemon
+JOIN jogos j
+ON u.id_jogo_favorito = j.id_jogo
+JOIN geracoes g
+ON u.id_geracao_favorita = g.id_geracao;

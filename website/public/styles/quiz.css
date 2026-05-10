@@ -1,0 +1,69 @@
+:root {
+    --verde-claro: #58D68D;
+    --verde-escuro: #145A32;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--verde-claro);
+    width: 100vw;
+    height: 100vh;
+}
+
+.imagem img {
+    width: 800px;
+    height: 640px;
+    margin-bottom: 100px;
+    align-self: center;
+}
+
+.formulario {
+    background-color: var(--verde-escuro);
+    display: flex;
+    padding-bottom: 0;
+    padding-right: 0;
+}
+
+.formulario_entrada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulario .input, .formulario .saidas {
+    margin-right: 70px;
+    margin-bottom: 50px;
+}
+
+.imagem_formulario {
+    align-self: flex-end;
+}
+
+.formulario .descricoes {
+    display: flex;
+    gap: 30px;
+    height: 20%;
+    margin-bottom: 50px;
+}
+
+.descricao h2 {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--fonte-principal);
+    color: var(--branco-principal);
+    margin-bottom: 15px;
+}
+
+.descricao .barra {
+    height: 10px;
+    width: 110px;
+    background-color: var(--branco-principal);
+    border-radius: 5px;
+}
+
+.respostas {
+    max-height: 80%;
+    overflow-y: auto;
+}
