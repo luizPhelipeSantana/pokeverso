@@ -68,7 +68,7 @@ main {
     overflow-y: auto;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     align-items: center;
     gap: 50px;
 }
@@ -110,6 +110,10 @@ main {
 
 .correto {
     background-color: var(--verde-claro);
+}
+
+.parcial {
+    background-color: #FFD700;
 }
 
 .menor {

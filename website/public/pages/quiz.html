@@ -23,7 +23,7 @@
                 <!-- Input -->
                 <div class="input">
                     <div class="div_auto_complete">
-                        <input type="text" id="ipt_pokemon" placeholder="Nome do pokémon" onkeyup="auto_complete()" onblur="tirar_auto_complete()" autocomplete="off">
+                        <input type="text" id="ipt_pokemon" placeholder="Nome do pokémon" onkeyup="auto_complete()" onblur="tirar_auto_complete()" onfocus="auto_complete()" autocomplete="off">
                         <ul id="lista_pokemon" class="lista_auto_complete">
 
                         </ul>
@@ -92,7 +92,8 @@
                     
 
                     <!-- Respostas-->
-                    <div class="respostas">
+                    <div class="respostas" id="respostas">
+                        
                     </div>
                 </div>
             </div>
@@ -111,6 +112,146 @@
 </body>
 
 <script>
+    const idPokemonSorteado = Math.round(Math.random() * 1086 - 1) + 1;
+    const pokemon = {
+        "id": idPokemonSorteado,
+        "nome": "",
+        "tipo_1": "",
+        "tipo_2": "",
+        "geracao": ""
+    }
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key == "Enter") {
+            enviar();
+        }
+    })
+
+    fetch("/pokemon/" + idPokemonSorteado)
+        .then(resposta => {
+            if (resposta.ok) {
+                if (resposta.status === 204) return null;
+                return resposta.json();
+            }
+            else {
+                console.log("Erro: " + resposta.status);
+            }
+        })
+        .then(listaPokemon => {
+            if (listaPokemon <= 0) {
+                console.error("Nenhum pokémon foi encontrado");
+            }
+
+            pokemon.nome = listaPokemon[0].nome;
+            pokemon.tipo_1 = listaPokemon[0].tipagem_1;
+            pokemon.tipo_2 = listaPokemon[0].tipagem_2;
+            pokemon.geracao = listaPokemon[0].id_geracao;
+
+        })
+        .catch((erro) => {
+            console.log(erro);
+        })
+
+
+    /*
+        <div class="resposta">
+            <div class="quadrado"></div>
+            <div class="quadrado">
+                <h3></h3>
+            </div>
+            <div class="quadrado">
+                <h3></h3>
+            </div>
+            <div class="quadrado">
+                <h3></h3>
+            </div>
+            <div class="quadrado">
+                <h3></h3>
+            </div>
+        </div>
+    */
+
+    function enviar() {
+        let pokemonNome = ipt_pokemon.value.trim();
+        ipt_pokemon.value = "";
+
+
+        fetch("/pokemon/quiz/" + pokemonNome)
+            .then(resposta => {
+                if (resposta.ok) {
+                    if (resposta.status === 204) return null;
+                    return resposta.json();
+                }
+                else {
+                    console.log("Erro" + resposta.status);
+                }
+            })
+            .then(listaPokemon => {
+                if (listaPokemon <= 0) {
+                    alert("Nenhum pokémon foi encontrado!")
+                }
+
+                let id = listaPokemon[0].id_pokemon;
+
+                let imagem = listaPokemon[0].foto_url;
+                let nome = listaPokemon[0].nome;
+                let tipo_1 = listaPokemon[0].tipagem_1;
+                let tipo_2 = listaPokemon[0].tipagem_2;
+                let geracao = listaPokemon[0].id_geracao;
+
+                let respostaGeracao = "correto";
+
+                if (geracao > pokemon.geracao) {
+                    respostaGeracao = "menor";
+                }
+                else if (geracao < pokemon.geracao) {
+                    respostaGeracao = "maior";
+                }
+
+                let resTipo_1 = "errado";
+
+                if (tipo_1 == pokemon.tipo_1) {
+                    resTipo_1 = "correto";
+                }
+                else if (tipo_1 == pokemon.tipo_2) {
+                    resTipo_1 = "parcial"
+                }
+
+                let resTipo_2 = "errado";
+
+                if (tipo_2 == pokemon.tipo_2) {
+                    resTipo_2 = "correto";
+                }
+                else if (tipo_2 == pokemon.tipo_1) {
+                    resTipo_2 = "parcial"
+                }
+
+                let resposta = `
+                    <div class="resposta">
+                        <div class="quadrado imagem_pokemon" style="background-image: url('${imagem}');">
+                        </div>
+                        <div class="quadrado ${(nome == pokemon.nome) ? "correto" : "errado"}">
+                            <h3>${nome}</h3>
+                        </div>
+                        <div class="quadrado ${resTipo_1}">
+                            <h3>${tipo_1}</h3>
+                        </div>
+                        <div class="quadrado ${resTipo_2}">
+                            <h3>${tipo_2}</h3>
+                        </div>
+                        <div class="quadrado ${respostaGeracao}">
+                            <h3>${geracao}</h3>
+                        </div>
+                    </div>
+                `;
+
+                respostas.innerHTML += resposta;
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
+    }
+
     function tirar_auto_complete() {
         setTimeout(() => lista_pokemon.innerHTML = "",
         100);
@@ -124,33 +265,33 @@
         let pokemon = ipt_pokemon.value.trim();
 
         fetch("/pokemon/autocomplete/" + pokemon)
-        .then(resposta => {
-            if (resposta.ok) {
-                return resposta.json();
-            }
-            else {
-                console.log("Erro" + resposta.status);
-            }
-        })
-        .then(listaPokemon => {
-            lista_pokemon.innerHTML = "";
-
-            for (let i = 0; i < listaPokemon.length; i++) {
-                lista_pokemon.innerHTML += `
-                    <li onclick="alterarInput('${listaPokemon[i].nome}')">
-                        <img src="${listaPokemon[i].foto_url}" class="imagem_auto_complete">
-                        ${listaPokemon[i].nome}
-                    </li>
-                `;
-            }
-
-            if (listaPokemon.length <= 0) {
+            .then(resposta => {
+                if (resposta.ok) {
+                    return resposta.json();
+                }
+                else {
+                    console.log("Erro" + resposta.status);
+                }
+            })
+            .then(listaPokemon => {
                 lista_pokemon.innerHTML = "";
-            }
-        })
-        .catch((erro) => {
-            console.log(erro);
-        })
+
+                for (let i = 0; i < listaPokemon.length; i++) {
+                    lista_pokemon.innerHTML += `
+                        <li onclick="alterarInput('${listaPokemon[i].nome}')">
+                            <img src="${listaPokemon[i].foto_url}" class="imagem_auto_complete" onclick="alterarInput('${listaPokemon[i].nome}')">
+                            <p onclick="alterarInput('${listaPokemon[i].nome}')">${listaPokemon[i].nome}</p>
+                        </li>
+                    `;
+                }
+
+                if (listaPokemon.length <= 0) {
+                    lista_pokemon.innerHTML = "";
+                }
+            })
+            .catch((erro) => {
+                console.log(erro);
+            })
     }
 </script>
 </html>

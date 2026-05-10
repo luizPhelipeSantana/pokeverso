@@ -1,5 +1,17 @@
 var database = require("../database/config");
 
+function buscarPorId(id) {
+  var instrucaoSql = `SELECT nome, tipagem_1, tipagem_2, foto_url, id_geracao FROM pokemon WHERE id_pokemon = '${id}'`;
+
+  return database.executar(instrucaoSql);
+}
+
+function buscarPorNome(nome) {
+  var instrucaoSql = `SELECT id_pokemon, nome, tipagem_1, tipagem_2, foto_url, id_geracao FROM pokemon WHERE nome = '${nome}'`;
+
+  return database.executar(instrucaoSql);
+}
+
 function listar() {
   var instrucaoSql = `SELECT * FROM pokemon`;
 
@@ -18,4 +30,4 @@ function autoComplete(nome) {
   return database.executar(instrucaoSql);
 }
 
-module.exports = { listar, pokemonUsuario, autoComplete };
+module.exports = { listar, pokemonUsuario, autoComplete, buscarPorId, buscarPorNome };
