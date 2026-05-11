@@ -6,7 +6,15 @@ function cadastro(nome, email, senha) {
     };
 
     fetch("/usuarios/existe/" + email)
-        .then(resposta => resposta.json())
+        .then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status === 204) return null;
+                return resposta.json();
+            }
+            else {
+                console.log("Erro" + resposta.status);
+            }
+        })
         .then((listaUsuarios) => {
             if (listaUsuarios.length >= 1) {
                 alert("Esse usuario já existe")
@@ -20,71 +28,102 @@ function cadastro(nome, email, senha) {
 }
 
 function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
-    fetch("/pokemon/listar")
-        .then(resposta => resposta.json())
-        .then(listaPokemon => {
-            let pokemon_id = -1;
+    fetch("/pokemon/listar/")
+    .then(function (resposta) {
+        if (resposta.ok) {
+            if (resposta.status === 204) return null;
+            return resposta.json();
+        }
+        else {
+            console.log("Erro" + resposta.status);
+        }
+    })
+    .then(function (listaPokemon) {
+        let pokemon_id = -1;
 
-            for (let i = 0; i < listaPokemon.length; i++) {
-                if (listaPokemon[i].nome == pokemon_favorito) {
-                    pokemon_id = Number(listaPokemon[i].id_pokemon);
-                    break;
-                }
+        for (let i = 0; i < listaPokemon.length; i++) {
+            if (listaPokemon[i].nome == pokemon_favorito) {
+                pokemon_id = Number(listaPokemon[i].id_pokemon);
+                break;
             }
+        }
 
-            if (pokemon_id < 0) {
-                alert("Pokémon não existe!");
-                return; 
-            }
+        console.log(listaPokemon);
+        console.log(pokemon_id);
 
-            fetch("/jogo/listar")
-                .then(resposta => resposta.json())
-                .then(listaJogos => {
-                    let jogo_id = -1;
+        if (pokemon_id < 0) {
+            alert("Pokémon não existe!");
+            return;
+        }
 
-                    for (let i = 0; i < listaJogos.length; i++) {
-                        if (listaJogos[i].nome == jogo_favorito) {
-                            jogo_id = Number(listaJogos[i].id_jogo);
-                            break;
-                        }
-                    }
-
-                    if (jogo_id < 0) {
-                        alert("Jogo não existe!");
-                        return;
-                    }
-
-                    fetch("/geracao/listar")
-                        .then(resposta => resposta.json())
-                        .then(listaGeracoes => {
-                            let geracao_id = -1;
-
-                            for (let i = 0; i < listaGeracoes.length; i++) {
-                                if (listaGeracoes[i].nome == geracao_favorita) {
-                                    geracao_id = Number(listaGeracoes[i].id_geracao);
-                                    break;
-                                }
-                            }
-
-                            if (geracao_id < 0) {
-                                alert("Geração não existe!");
-                                return;
-                            }
-
-                            let favoritos = {
-                                id_pokemon_favorito: pokemon_id,
-                                id_jogo_favorito: jogo_id,
-                                id_geracao_favorita: geracao_id
-                            };
-
-                            localStorage.setItem("favoritos", JSON.stringify(favoritos));
-                            cadastrar();
-                        });
-                });
+        fetch("/jogo/listar", {
+            method: "GET"
         })
-        .catch(erro => {
-            console.log(`#ERRO: ${erro}`);
-        });
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    if (resposta.status === 204) return null;
+                    return resposta.json();
+                }
+                else {
+                    console.log("Erro" + resposta.status);
+                }
+            })
+            .then(function (listaJogos) {
+                let jogo_id = -1;
+
+                for (let i = 0; i < listaJogos.length; i++) {
+                    if (listaJogos[i].nome == jogo_favorito) {
+                        jogo_id = Number(listaJogos[i].id_jogo);
+                        break;
+                    }
+                }
+
+                if (jogo_id < 0) {
+                    alert("Jogo não existe!");
+                    return;
+                }
+
+                fetch("/geracao/listar", {
+                    method: "GET"
+                })
+                    .then(function (resposta) {
+                        if (resposta.ok) {
+                            if (resposta.status === 204) return null;
+                            return resposta.json();
+                        }
+                        else {
+                            console.log("Erro" + resposta.status);
+                        }
+                    })
+                    .then(function (listaGeracoes) {
+                        let geracao_id = -1;
+
+                        for (let i = 0; i < listaGeracoes.length; i++) {
+                            if (listaGeracoes[i].nome == geracao_favorita) {
+                                geracao_id = Number(listaGeracoes[i].id_geracao);
+                                break;
+                            }
+                        }
+
+                        if (geracao_id < 0) {
+                            alert("Geração não existe!");
+                            return;
+                        }
+
+                        let favoritos = {
+                            id_pokemon_favorito: pokemon_id,
+                            id_jogo_favorito: jogo_id,
+                            id_geracao_favorita: geracao_id
+                        };
+
+                        localStorage.setItem("favoritos", JSON.stringify(favoritos));
+                        cadastrar();
+                    });
+            });
+    })
+    .catch(erro => {
+        console.log(`#ERRO: ${erro}`);
+    });
 }
 
 function cadastrar() {
@@ -116,20 +155,20 @@ function cadastrar() {
 
         }),
     })
-    .then(function (resposta) {
-    console.log("resposta: ", resposta);
+        .then(function (resposta) {
+            console.log("resposta: ", resposta);
 
-    if (resposta.ok) {
-        alert("Cadastrou");
+            if (resposta.ok) {
+                alert("Cadastrou");
 
-         window.location = "./login.html";
-    } else {
-        throw "Houve um erro ao tentar realizar o cadastro!";
-    }
-    })
-    .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
+                window.location = "./login.html";
+            } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
 
     console.log(usuarioStorage, favoritosStorage);
 }

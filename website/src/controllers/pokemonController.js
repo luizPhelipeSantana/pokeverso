@@ -5,13 +5,7 @@ function buscarPorId(req, res) {
 
     pokemonModel.buscarPorId(id)
         .then((resultado) => {
-            if (resultado.length > 0) {
-                console.log(resultado);
-                res.status(200).json(resultado);
-            }
-            else {
-                res.status(204).json([]);
-            }
+            res.status(200).json(resultado);
         })
         .catch(function (erro) {
             console.log(erro);
@@ -25,13 +19,7 @@ function buscarPorNome(req, res) {
 
     pokemonModel.buscarPorNome(nome)
         .then((resultado) => {
-            if (resultado.length > 0) {
-                console.log(resultado);
-                res.status(200).json(resultado);
-            }
-            else {
-                res.status(204).json([]);
-            }
+            res.status(200).json(resultado);
         })
         .catch(function (erro) {
             console.log(erro);
@@ -41,24 +29,20 @@ function buscarPorNome(req, res) {
 }
 
 function listar(req, res) {
-     pokemonModel.listar().then((resultado) => {
+    console.log("Controller listar")
+     pokemonModel.listar().then(function (resultado) {
         console.log(resultado);
-        res.status(200).json(resultado);
+        return res.status(200).json(resultado);
       });
 }
+
 
 function autoComplete(req, res) {
     let nome = req.params.nome;
 
     pokemonModel.autoComplete(nome)
         .then((resultado) => {
-            if (resultado.length > 0) {
-                console.log(resultado);
-                res.status(200).json(resultado);
-            }
-            else {
-                res.status(204).json([]);
-            }
+            res.status(200).json(resultado);
         })
         .catch(function (erro) {
             console.log(erro);
@@ -71,5 +55,5 @@ module.exports = {
     listar,
     autoComplete,
     buscarPorNome,
-    buscarPorId
+    buscarPorId,
 }
