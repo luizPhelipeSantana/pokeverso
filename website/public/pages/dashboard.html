@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../styles/dashboard.css">
     <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
     
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
@@ -44,22 +45,193 @@
     <main>
         <!-- Gráficos -->
         <div class="graficos">
-            <!-- Jogos mais escolhidos como favoritos -->
+            <!-- Pokémon mais escolhidos como favoritos -->
             <div class="grafico">
-                <canvas id="graficoJogo"></canvas>
+                <canvas id="grafico_pokemon"></canvas>
             </div>
 
-            <!-- Gerações mais escolhidas como favoritas -->
+            <!-- Jogos mais escolhidos como favoritos-->
             <div class="grafico">
-                <canvas id="graficoFavorito"></canvas>
+                <canvas id="grafico_jogo"></canvas>
             </div>
-        </div>
-
-        <!-- Gráfico principal -->
-        <!-- Os pokémon mais escolhidos como favoritos -->
-        <div class="grafico-principal">
-            <canvas id="graficoPokemon"></canvas>
         </div>
     </main>
 </body>
+
+<script>
+    window.onload = () => {
+        carregarGraficoPokemon();
+        carregarGraficoJogos();
+
+        setInterval(() => {
+            carregarGraficoPokemon();
+            carregarGraficoJogos();
+        }, 300000); 
+    };
+
+    let graficoPokemon;
+    let graficoJogos;
+
+    function carregarGraficoPokemon() {
+
+        fetch('/dashboard/grafico/pokemon', { cache: 'no-store' })
+            .then(function (response){
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw new Error('Erro ao buscar dados dos pokémons');
+            })
+            .then(function (resposta) {
+
+                let labels = [];
+                let dados = [];
+                let cores = [];
+
+                for (let i = 0; i < resposta.length; i++) {
+                    labels.push(resposta[i].pokemon);
+                    dados.push(resposta[i].quantidade);
+                    cores.push(resposta[i].cor_principal);
+                }
+
+                if (graficoPokemon) {
+                    graficoPokemon.destroy();
+                }
+
+                const ctx = document.getElementById('grafico_pokemon');
+
+                graficoPokemon = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dados,
+                            backgroundColor: cores,
+                            borderColor: cores,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+
+                        scales: {
+
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45,
+
+                                    font: {
+                                        weight: 'bold',
+                                        size: 16
+                                    }
+                                }
+                            },
+
+                            y: {
+                                beginAtZero: true,
+
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    function carregarGraficoJogos() {
+
+        fetch('/dashboard/grafico/jogos', { cache: 'no-store' })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+
+                throw new Error('Erro ao buscar dados dos jogos');
+            })
+            .then(resposta => {
+
+                let labels = [];
+                let dados = [];
+
+                for (let i = 0; i < resposta.length; i++) {
+                    labels.push(resposta[i].jogo);
+                    dados.push(resposta[i].quantidade);
+                }
+
+                if (graficoJogos) {
+                    graficoJogos.destroy();
+                }
+
+                const ctx = document.getElementById('grafico_jogo');
+
+                graficoJogos = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: dados,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+
+                        scales: {
+
+                            x: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    maxRotation: 45,
+                                    minRotation: 45,
+
+                                    font: {
+                                        weight: 'bold',
+                                        size: 16
+                                    }
+                                }
+                            },
+
+                            y: {
+                                beginAtZero: true,
+
+                                ticks: {
+                                    stepSize: 1
+                                }
+                            }
+                        }
+                    }
+                });
+
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+</script>
 </html>

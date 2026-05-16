@@ -7,14 +7,14 @@ FLUSH PRIVILEGES;
 
 CREATE TABLE geracoes (
 	id_geracao INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
     lancamento DATE NOT NULL,
     qtd_pokemon INT NOT NULL
 );
 
 CREATE TABLE jogos (
 	id_jogo INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
     lancamento DATE NOT NULL,
     id_geracao INT NOT NULL,
     CONSTRAINT chFkGeracaoJogo FOREIGN KEY (id_geracao) REFERENCES geracoes(id_geracao)
@@ -22,7 +22,7 @@ CREATE TABLE jogos (
 
 CREATE TABLE pokemon (
 	id_pokemon INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
     tipagem_1 VARCHAR(45) NOT NULL,
     tipagem_2 VARCHAR(45),
     foto_url VARCHAR(255) NOT NULL,
@@ -34,9 +34,9 @@ CREATE TABLE pokemon (
 
 CREATE TABLE usuario (
 	id_usuario INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45) NOT NULL,
-    email VARCHAR(45) UNIQUE NOT NULL,
-    senha VARCHAR(45) NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    senha VARCHAR(255) NOT NULL,
     admin TINYINT DEFAULT 0 NOT NULL,
     id_pokemon_favorito INT,
     id_jogo_favorito INT,
