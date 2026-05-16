@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
+    
 </head>
 <body>
-    
+    <header>
+        <!-- KPIs -->
+        <div class="kpis">
+            <!-- Pokémon mais escolhido como favorito -->
+            <div class="kpi" id="kpi_pokemon">
+                Quagsire
+            </div>
+
+            <!-- Jogo mais escolhido como favorito -->
+            <div class="kpi" id="kpi_jogo">
+                Pokémon FireRed
+            </div>
+
+            <!-- Geração mais escolhida como favorita-->
+            <div class="kpi" id="kpi_geracao">
+                Primeira Geração I
+            </div>
+        </div>
+
+        <!-- Botão de sair-->
+        <div class="imagem-sair">
+            <!-- Logout -->
+            <div class="logout">
+                <a href="../pages/home.html">
+                    <img src="../assets/icons/logout.svg" alt="Botão para sair">
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Gráficos -->
+        <div class="graficos">
+            <!-- Jogos mais escolhidos como favoritos -->
+            <div class="grafico">
+                <canvas id="graficoJogo"></canvas>
+            </div>
+
+            <!-- Gerações mais escolhidas como favoritas -->
+            <div class="grafico">
+                <canvas id="graficoFavorito"></canvas>
+            </div>
+        </div>
+
+        <!-- Gráfico principal -->
+        <!-- Os pokémon mais escolhidos como favoritos -->
+        <div class="grafico-principal">
+            <canvas id="graficoPokemon"></canvas>
+        </div>
+    </main>
 </body>
 </html>

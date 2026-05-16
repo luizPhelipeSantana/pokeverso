@@ -1,0 +1,23 @@
+body {
+    background-color: var(--roxo-principal);
+}
+
+.kpis {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.kpis .kpi {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    background-color: aliceblue;
+    font-family: var(--fonte-principal);
+    font-size: 26px;
+    font-weight: bold;
+
+}
