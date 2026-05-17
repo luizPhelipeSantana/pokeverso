@@ -62,11 +62,17 @@
     window.onload = () => {
         carregarGraficoPokemon();
         carregarGraficoJogos();
+        carregarKpiPokemon();
+        carregarKpiJogo();
+        carregarKpiGeracao();
 
         setInterval(() => {
             carregarGraficoPokemon();
             carregarGraficoJogos();
-        }, 300000); 
+            carregarKpiPokemon();
+            carregarKpiJogo();
+            carregarKpiGeracao();
+        }, 300000);
     };
 
     let graficoPokemon;
@@ -232,6 +238,66 @@
             .catch(error => {
                 console.error(error);
             });
+    }
+
+    function carregarKpiPokemon() {
+        fetch ("/dashboard/kpi/pokemon", { cache: "no-store"} )
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(function (resposta) {
+                if (resposta.length <= 0) {
+                    console.error("Não foi encontrado nenhum pokémon");
+                }
+                else {
+                    kpi_pokemon.innerHTML = resposta[0].pokemon;
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    function carregarKpiJogo() {
+        fetch ("/dashboard/kpi/jogo", { cache: "no-store"} )
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(function (resposta) {
+                if (resposta.length <= 0) {
+                    console.error("Não foi encontrado nenhum jogo");
+                }
+                else {
+                    kpi_jogo.innerHTML = resposta[0].jogo;
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
+
+    function carregarKpiGeracao() {
+        fetch ("/dashboard/kpi/geracao", { cache: "no-store"} )
+            .then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                }
+            })
+            .then(function (resposta) {
+                if (resposta.length <= 0) {
+                    console.error("Não foi encontrado nenhuma geração");
+                }
+                else {
+                    kpi_geracao.innerHTML = resposta[0].geracao;
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 </script>
 </html>

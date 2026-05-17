@@ -14,8 +14,34 @@ function graficoJogos(req, res) {
       });
 }
 
+function kpiPokemon(req, res) {
+  dashboardModel.kpiPokemon()
+    .then(function (resultado) {
+      console.log(resultado);
+      return res.status(200).json(resultado);
+    })
+}
+
+function kpiJogo(req, res) {
+  dashboardModel.kpiJogo()
+    .then(function (resultado) {
+      console.log(resultado);
+      return res.status(200).json(resultado);
+    })
+}
+
+function kpiGeracao(req, res) {
+  dashboardModel.kpiGeracao()
+    .then(function (resultado) {
+      console.log(resultado);
+      return res.status(200).json(resultado);
+    })
+}
 
 module.exports = {
     graficoPokemon,
-    graficoJogos
+    graficoJogos,
+    kpiPokemon,
+    kpiJogo,
+    kpiGeracao
 }
