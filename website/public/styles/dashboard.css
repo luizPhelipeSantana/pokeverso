@@ -6,6 +6,10 @@ body {
     background-color: var(--roxo-principal);
 }
 
+header {
+    padding: 0 50px !important;
+}
+
 .kpis {
     display: flex;
     justify-content: space-between;
@@ -13,11 +17,26 @@ body {
     gap: 50px;
 }
 
+.kpis .area-kpi {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.area-kpi h3 {
+    font-family: var(--fonte-principal);
+    font-size: 22px;
+    text-align: center;
+    color: var(--branco-principal);
+}
+
 .kpis .kpi {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 350px;
+    width: 450px;
     height: 100px;
     background-color: var(--branco-principal);
     font-family: var(--fonte-principal);
@@ -41,9 +60,17 @@ body {
     height: 580px;
 }
 
+.grafico h2 {
+    font-family: var(--fonte-principal);
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--branco-principal);
+}
+
 .grafico canvas {
     height: 100% !important;
     width: 100%;
-    background-color: var(--branco-principal);
     border-radius: 10px;
+    background-color: var(--branco-principal);
 }
