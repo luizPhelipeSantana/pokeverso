@@ -1,0 +1,218 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #2E1A47;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 0;
+}
+
+.titulo {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.titulo h1 {
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.titulo p {
+    font-size: 20px;
+    color: #a1a1aa;
+    max-width: 800px;
+    margin: auto;
+    line-height: 35px;
+}
+
+.titulos {
+    text-align: center;
+}
+
+.linha_tempo {
+    width: 50%;
+    margin: auto;
+    border-left: 2px solid #27272a;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.card_jogo {
+    position: relative;
+}
+
+.bola {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: absolute;
+    left: -64px;
+    top: 30px;
+}
+
+.card {
+    background-color: #18181b;
+    border-radius: 25px;
+    overflow: hidden;
+    border: 1px solid #27272a;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.01);
+}
+
+.imagem {
+    width: 100%;
+    height: 320px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.informacoes {
+    padding: 30px;
+}
+
+.informacoes span {
+    color: #a1a1aa;
+    font-size: 14px;
+    text-transform: uppercase;
+}
+
+.informacoes h2 {
+    margin-top: 10px;
+    font-size: 35px;
+}
+
+.ano {
+    width: fit-content;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    background-color: #27272a;
+    font-weight: bold;
+}
+
+.informacoes p {
+    color: #d4d4d8;
+    line-height: 30px;
+    font-size: 18px;
+}
+
+.barra {
+    width: 100%;
+    height: 10px;
+    background-color: #27272a;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 30px;
+}
+
+.progresso {
+    height: 100%;
+}
+
+/* Cores */
+
+.vermelho {
+    background: linear-gradient(90deg, #ef4444, #facc15);
+}
+
+.dourado {
+    background: linear-gradient(90deg, #facc15, #94a3b8);
+}
+
+.esmeralda {
+    background: linear-gradient(90deg, #10b981, #3b82f6);
+}
+
+.ciano {
+    background: linear-gradient(90deg, #22d3ee, #6366f1);
+}
+
+.preto {
+    background: linear-gradient(90deg, #18181b, #71717a);
+}
+
+.rosa {
+    background: linear-gradient(90deg, #ec4899, #3b82f6);
+}
+
+.laranja {
+    background: linear-gradient(90deg, #fb923c, #8b5cf6);
+}
+
+.azul_ceu {
+    background: linear-gradient(90deg, #0ea5e9, #ef4444);
+}
+
+.violeta {
+    background: linear-gradient(90deg, #dc2626, #7c3aed);
+}
+
+.azul {
+    background: linear-gradient(90deg, #22d3ee, #1d4ed8);
+}
+
+/* Imagens */
+
+#gen-1 {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYbxDbRpDtOOuQAlJ65YwFhiRgB7H1wSCPcg&s");
+}
+
+#gen-2 {
+    background-image: url("https://i.ytimg.com/vi/Imn0eYJxi_0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBFRhYtdcwP9ViSpii1hJepkAK8GA");
+}
+
+#gen-3 {
+    background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRy2HxSAyp9ucyPVDshuqdB5riHxWjkSDCp12DwHgZdrCGa7KgJIqj5dmcLZKPhiaeSJTFgVNAOBzvSHw8efPKj9VpAyK2Y9xJlHkNUFa2qevAhyD4WjNt2b0IfnNeHrZvQgYiL3xo6K4/s1280/pokemon-emerald-cutscene.jpg");
+    background-size: contain;
+}
+
+#gen-4 {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4ohw-FH68kT7o2IfYqESXfeSaf-8Lj0mEA&s");
+    background-size: contain;
+}
+
+#gen-5 {
+    background-image: url("https://i.guim.co.uk/img/static/sys-images/Technology/Pix/pictures/2011/3/7/1299494090978/Pokemon-Black-007.jpg?width=465&dpr=1&s=none&crop=none");
+}
+
+#gen-6 {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQemeY6sYjMqMAGxMcuiK6pOzsS1vARGxz7iw&s");
+}
+
+#gen-7 {
+    background-image: url("https://www.gamegrin.com/assets/Uploads/2016/12/12/Pokemon-Sun-Moon-Screenshot-A.png");
+}
+
+#gen-8 {
+    background-image: url("https://i.ytimg.com/vi/4lX8upeLj0o/maxresdefault.jpg");
+}
+
+#gen-9 {
+    background-image: url("https://projectn.com.br/wp-content/uploads/2022/08/Pokemon_SV_Screenshot_10-1600x900.jpg");
+}
+
+#gen-10 {
+    background-image: url("https://variety.com/wp-content/uploads/2026/02/pokemon.jpg?w=1000&h=667&crop=1");
+}
