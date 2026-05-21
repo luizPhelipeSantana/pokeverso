@@ -10,6 +10,13 @@ body {
     color: white;
 }
 
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 67%;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -22,6 +29,7 @@ body {
 
 .voltar {
     padding: 20px;
+    justify-self: start;
 }
 
 .voltar img {
@@ -29,7 +37,6 @@ body {
 }
 
 .titulo {
-    width: 90%;
     margin: auto;
     text-align: center;
     margin-bottom: 80px;
@@ -55,7 +62,6 @@ body {
 .linha_tempo {
     width: 50%;
     margin: auto;
-    border-left: 2px solid #27272a;
     padding-left: 50px;
     display: flex;
     flex-direction: column;
@@ -64,15 +70,6 @@ body {
 
 .card_jogo {
     position: relative;
-}
-
-.bola {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    position: absolute;
-    left: -64px;
-    top: 30px;
 }
 
 .card {

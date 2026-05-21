@@ -21,6 +21,7 @@ main {
     background-color: var(--vermelho-cadastro);
     height: 90%;
     gap: 5%;
+    padding: 40px 0;
 }
 
 .formulario h2, .formulario label {
@@ -29,7 +30,11 @@ main {
 }
 
 .formulario .links {
-    margin-top: 20%;
+    margin-top: 13%;
+}
+
+.inputs {
+    gap: 30px !important;
 }
 
 .formulario button {

@@ -2,10 +2,6 @@
     background-color: var(--vermelho);
 }
 
-.roxo-escuro {
-    background-color: var(--roxo-escuro);
-}
-
 header h1 {
     font-family: var(--fonte-principal);
     font-weight: bold;
