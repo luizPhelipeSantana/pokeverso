@@ -56,17 +56,40 @@
             </a>
         </div>
     </main>
+
+    <div class="div_alerta" id="alerta">
+        <div class="alerta_titulo">
+            <img src="https://cdn-icons-png.flaticon.com/512/5626/5626203.png" alt="">
+
+            <h3>Alerta</h3>
+        </div>
+
+        <div class="alerta_texto" id="alerta_texto">
+            
+        </div>
+    </div>
 </body>
 
 <script src="../script/cadastro.js"></script>
+<script src="../script/alerta.js"></script>
 
 <script>
     function cadastroHtml() {
-        let nomeVar = ipt_nome.value;
-        let emailVar = ipt_email.value;
-        let senhaVar = ipt_senha.value;
+        let nomeVar = ipt_nome.value.trim();
+        let emailVar = ipt_email.value.trim();
+        let senhaVar = ipt_senha.value.trim();
 
-        cadastro(nomeVar, emailVar, senhaVar);
+        if (
+            nomeVar == "" ||
+            emailVar == "" ||
+            senhaVar == ""
+        )
+        {
+            exibirAlerta("Preencha todos os campos!");
+        }
+        else {
+            cadastro(nomeVar, emailVar, senhaVar);
+        }
     }
 </script>
 </html> 

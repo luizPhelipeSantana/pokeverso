@@ -69,7 +69,21 @@
             </div>
         </div>
     </main>
+
+    <div class="div_alerta" id="alerta">
+        <div class="alerta_titulo">
+            <img src="https://cdn-icons-png.flaticon.com/512/5626/5626203.png" alt="">
+
+            <h3>Alerta</h3>
+        </div>
+
+        <div class="alerta_texto" id="alerta_texto">
+            
+        </div>
+    </div>
 </body>
+
+<script src="../script/alerta.js"></script>
 
 <script>
     function entrar() {
@@ -77,7 +91,9 @@
         let senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert("Preencha todos os campos");
+            exibirAlerta("Preencha todos os campos");
+
+            return;
         }
 
         fetch("/usuarios/autenticar", {
@@ -115,7 +131,7 @@
                 resposta.text().then(texto => {
                     console.error(texto);
 
-                    alert("Erro ao tentar fazer login");
+                    exibirAlerta("Erro ao tentar fazer login");
                 });
             }
 

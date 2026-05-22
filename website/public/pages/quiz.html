@@ -137,6 +137,8 @@
     </div>
 </body>
 
+<script src="../script/alerta.js"></script>
+
 <script>
     let idPokemonSorteado = 1;
     let tentativas = 0;
@@ -146,17 +148,6 @@
         "tipo_1": "",
         "tipo_2": "",
         "geracao": ""
-    }
-
-    function exibirAlerta(texto) {
-        alerta_texto.innerHTML = `
-            <p>${texto}</p>
-        `;
-        alerta.style.opacity = "1";
-
-        setTimeout(() => {
-            alerta.style.opacity = "0";
-        }, 3000);
     }
 
     document.addEventListener("keydown", (evento) => {
@@ -207,7 +198,12 @@
 
     function enviar() {
         let pokemonNome = ipt_pokemon.value.trim();
-        ipt_pokemon.value = "";
+
+        if (pokemonNome == "") {
+            exibirAlerta("Coloque o nome de um pokémon")
+            return;
+        }
+
         tentativas++;
 
         fetch("/pokemon/quiz/" + pokemonNome)
@@ -278,6 +274,8 @@
                         </div>
                     </div>
                 `;
+
+                ipt_pokemon.value = "";
 
                 respostas.innerHTML += resposta;
 

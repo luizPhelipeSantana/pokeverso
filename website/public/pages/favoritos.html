@@ -79,17 +79,40 @@
             <img src="../assets/imgs/favoritos/quagsire-2.svg" alt="Quagsire" class="quagsire-1">
         </div>
     </main>
+
+    <div class="div_alerta" id="alerta">
+        <div class="alerta_titulo">
+            <img src="https://cdn-icons-png.flaticon.com/512/5626/5626203.png" alt="">
+
+            <h3>Alerta</h3>
+        </div>
+
+        <div class="alerta_texto" id="alerta_texto">
+            
+        </div>
+    </div>
 </body>
 
 <script src="../script/cadastro.js"></script>
+<script src="../script/alerta.js"></script>
 
 <script>
      function favoritosHtml() {
-        let pokemon_favorito = ipt_pokemon_favorito.value;
-        let jogo_favorito = ipt_jogo_favorito.value;
-        let geracao_favorita = ipt_geracao_favorita.value;
+        let pokemon_favorito = ipt_pokemon_favorito.value.trim();
+        let jogo_favorito = ipt_jogo_favorito.value.trim();
+        let geracao_favorita = ipt_geracao_favorita.value.trim();
 
-        let res = favorito(pokemon_favorito, jogo_favorito, geracao_favorita);
+        if (
+            pokemon_favorito == "" ||
+            jogo_favorito == "" ||
+            geracao_favorita == ""
+        )
+        {
+            exibirAlerta("Preencha todos os campos!");
+        }
+        else {
+            favorito(pokemon_favorito, jogo_favorito, geracao_favorita);
+        }
      }
 
 

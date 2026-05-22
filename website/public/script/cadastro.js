@@ -17,7 +17,7 @@ function cadastro(nome, email, senha) {
         })
         .then((listaUsuarios) => {
             if (listaUsuarios.length >= 1) {
-                alert("Esse usuario já existe")
+                exibirAlerta("Já existe um usuario com esse email");
             }
             else {
                 localStorage.setItem("usuario", JSON.stringify(usuario));
@@ -52,7 +52,7 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
         console.log(pokemon_id);
 
         if (pokemon_id < 0) {
-            alert("Pokémon não existe!");
+            exibirAlerta("Pokémon não encontrado");
             return;
         }
 
@@ -79,7 +79,7 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
                 }
 
                 if (jogo_id < 0) {
-                    alert("Jogo não existe!");
+                    exibirAlerta("Jogo não encontrado");
                     return;
                 }
 
@@ -106,7 +106,7 @@ function favorito(pokemon_favorito, jogo_favorito, geracao_favorita) {
                         }
 
                         if (geracao_id < 0) {
-                            alert("Geração não existe!");
+                            exibirAlerta("Geração não encontrada");
                             return;
                         }
 
@@ -159,11 +159,9 @@ function cadastrar() {
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                alert("Cadastrou");
-
                 window.location = "./login.html";
             } else {
-                throw "Houve um erro ao tentar realizar o cadastro!";
+                exibirAlerta("Não foi possível realizar o cadastro");
             }
         })
         .catch(function (resposta) {
