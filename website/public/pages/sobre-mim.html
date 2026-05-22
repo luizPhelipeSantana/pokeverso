@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokeverso</title>
+    
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/sobre-mim.css">
+</head>
+<body>
+    <header class="roxo">
+        <div class="voltar">
+            <img src="../assets/icons/botao-voltar.png" alt="" style="width: 70px; height: 70px;" onclick="window.location = './home.html'">
+        </div>
+    </header>
+
+    <main class="roxo-escuro">
+
+        <div class="anterior navegacao" onclick="anterior()">
+            <img src="../assets/icons/botao-voltar.png" alt="">
+        </div>
+
+        <div class="contexto" id="contexto">
+            <div class="contexto-1" id="contexto_1">
+
+            </div>
+
+            <div class="contexto-2" id="contexto_2">
+
+            </div>
+        </div>
+
+        <div class="proximo navegacao" onclick="proximo()">
+            <img src="../assets/icons/botao-voltar.png" alt="">
+        </div>
+
+    </main>
+
+    <footer class="roxo">
+        <img src="../assets/imgs/master-ball.svg" alt="Master ball" class="invertido">
+
+        <p class="texto-branco">
+            &copy; 2026 <strong><a href="https://github.com/luizPhelipeSantana" target="_blank">Luiz Phelipe</a></strong> - Todos os direitos reservados
+        </p>
+
+        <img src="../assets/imgs/master-ball.svg" alt="Master ball">
+    </footer>
+</body>
+
+<script>
+    let valorAtual = 0;
+    const textos = [
+    ];
+
+    const imagens = [
+    ];
+
+    exibir();
+
+    function exibir() {
+        contexto_1.innerHTML = textos[valorAtual];
+        contexto_2.innerHTML = `<img src="${imagens[valorAtual]}">`;
+
+        if (valorAtual % 2 == 0) {
+            contexto.style.flexDirection = "row";
+        }
+        else {
+            contexto.style.flexDirection = "row-reverse";
+        }
+    }
+
+    function proximo() {
+        if (valorAtual == textos.length - 1) {
+            valorAtual = 0;
+        }
+        else {
+            valorAtual += 1;
+        }
+
+        exibir();
+    }
+
+    function anterior() {
+        if (valorAtual == 0) {
+            valorAtual = textos.length - 1;
+        }
+        else {
+            valorAtual -= 1;
+        }
+
+        exibir();
+    }
+</script>
+</html>
