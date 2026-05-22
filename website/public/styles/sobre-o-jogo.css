@@ -181,43 +181,43 @@ header {
 /* Imagens */
 
 #gen-1 {
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYbxDbRpDtOOuQAlJ65YwFhiRgB7H1wSCPcg&s");
+    background-image: url("../assets/imgs/sobre-o-jogo/yellow.jpeg");
 }
 
 #gen-2 {
-    background-image: url("https://i.ytimg.com/vi/Imn0eYJxi_0/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLBFRhYtdcwP9ViSpii1hJepkAK8GA");
+    background-image: url("../assets/imgs/sobre-o-jogo/silver.jpg");
 }
 
 #gen-3 {
-    background-image: url("https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgRy2HxSAyp9ucyPVDshuqdB5riHxWjkSDCp12DwHgZdrCGa7KgJIqj5dmcLZKPhiaeSJTFgVNAOBzvSHw8efPKj9VpAyK2Y9xJlHkNUFa2qevAhyD4WjNt2b0IfnNeHrZvQgYiL3xo6K4/s1280/pokemon-emerald-cutscene.jpg");
+    background-image: url("../assets/imgs/sobre-o-jogo/emerald.jpg");
     background-size: contain;
 }
 
 #gen-4 {
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4ohw-FH68kT7o2IfYqESXfeSaf-8Lj0mEA&s");
+    background-image: url("../assets/imgs/sobre-o-jogo/platinum.jpeg");
     background-size: contain;
 }
 
 #gen-5 {
-    background-image: url("https://i.guim.co.uk/img/static/sys-images/Technology/Pix/pictures/2011/3/7/1299494090978/Pokemon-Black-007.jpg?width=465&dpr=1&s=none&crop=none");
+    background-image: url("../assets/imgs/sobre-o-jogo/black.avif");
 }
 
 #gen-6 {
-    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQemeY6sYjMqMAGxMcuiK6pOzsS1vARGxz7iw&s");
+    background-image: url("../assets/imgs/sobre-o-jogo/xy.jpeg");
 }
 
 #gen-7 {
-    background-image: url("https://www.gamegrin.com/assets/Uploads/2016/12/12/Pokemon-Sun-Moon-Screenshot-A.png");
+    background-image: url("../assets/imgs/sobre-o-jogo/sun.png");
 }
 
 #gen-8 {
-    background-image: url("https://i.ytimg.com/vi/4lX8upeLj0o/maxresdefault.jpg");
+    background-image: url("../assets/imgs/sobre-o-jogo/sword.jpg");
 }
 
 #gen-9 {
-    background-image: url("https://projectn.com.br/wp-content/uploads/2022/08/Pokemon_SV_Screenshot_10-1600x900.jpg");
+    background-image: url("../assets/imgs/sobre-o-jogo/scarlet.jpg");
 }
 
 #gen-10 {
-    background-image: url("https://variety.com/wp-content/uploads/2026/02/pokemon.jpg?w=1000&h=667&crop=1");
+    background-image: url("../assets/imgs/sobre-o-jogo/wind-waves.webp");
 }
