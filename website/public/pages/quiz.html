@@ -169,6 +169,7 @@
         tentativas = 0;
         modal_resultado.style.display = "none";
         respostas.innerHTML = "";
+        respostas.scrollTop = 0;
 
         fetch("/pokemon/" + idPokemonSorteado)
             .then(resposta => {
@@ -277,7 +278,9 @@
 
                 ipt_pokemon.value = "";
 
-                respostas.innerHTML += resposta;
+                // respostas.insertAdjacentHTML("afterbegin", resposta);
+                respostas.innerHTML = resposta + respostas.innerHTML;
+                respostas.scrollTop = 0;
 
                 if (id == idPokemonSorteado) {
                     modal_resultado.innerHTML = `
