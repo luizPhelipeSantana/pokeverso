@@ -123,6 +123,18 @@
             </div>
         </div>
     </main>
+
+    <div class="div_alerta" id="alerta">
+        <div class="alerta_titulo">
+            <img src="https://cdn-icons-png.flaticon.com/512/5626/5626203.png" alt="">
+
+            <h3>Alerta</h3>
+        </div>
+
+        <div class="alerta_texto" id="alerta_texto">
+            
+        </div>
+    </div>
 </body>
 
 <script>
@@ -136,6 +148,17 @@
         "geracao": ""
     }
 
+    function exibirAlerta(texto) {
+        alerta_texto.innerHTML = `
+            <p>${texto}</p>
+        `;
+        alerta.style.opacity = "1";
+
+        setTimeout(() => {
+            alerta.style.opacity = "0";
+        }, 3000);
+    }
+
     document.addEventListener("keydown", (evento) => {
         if (evento.key == "Enter") {
             enviar();
@@ -143,7 +166,7 @@
     });
 
     function carregarPokemon() {
-        idPokemonSorteado = Math.round(Math.random() * 151 - 1) + 1;
+        idPokemonSorteado = Math.round(Math.random() * 1084 - 1) + 1;
         pokemon = {
             "id": idPokemonSorteado,
             "nome": "",
@@ -199,7 +222,7 @@
             })
             .then(listaPokemon => {
                 if (listaPokemon <= 0) {
-                    alert("Nenhum pokémon foi encontrado!")
+                    exibirAlerta("Pokémon não encontrado!");
                 }
 
                 let id = listaPokemon[0].id_pokemon;
