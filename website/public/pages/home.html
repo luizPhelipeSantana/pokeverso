@@ -16,7 +16,7 @@
         <div class="info-usuario">
             <!-- Imagem usuario -->
             <div class="area-imagem-usuario" id="area_imagem">
-                <img src="../assets/imgs/home/icon-charizrd.svg" alt="">
+                
             </div>
 
             <!-- Nome do usuario -->
@@ -87,9 +87,11 @@
     function principal() {
         nome_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         nome_usuario.style.color = sessionStorage.COR_SECUNDARIA;
-        area_imagem.innerHTML = `
-            <img src="${sessionStorage.FOTO_URL}">
-        `;
+        // area_imagem.innerHTML = `
+        //    <img src="${sessionStorage.FOTO_URL}">
+        // `;
+
+        area_imagem.style.backgroundImage = `url("${sessionStorage.FOTO_URL}")`;
 
         header.style.backgroundColor = sessionStorage.COR_PRINCIPAL;
         footer.style.backgroundColor = sessionStorage.COR_PRINCIPAL;

@@ -7,6 +7,8 @@
     
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/sobre-mim.css">
+    <link rel="shortcut icon" href="../assets/icons/game.png" type="image/x-icon">
+    
 </head>
 <body>
     <header class="roxo">
@@ -50,17 +52,38 @@
 
 <script>
     let valorAtual = 0;
+
     const textos = [
+        "Eu me chamo Luiz Phelipe, nasci no dia 12/06/2008 no Itaim Paulista. Estou cursando Ciência da Computação na Sptech. Meus hobbies são programar, pois sempre tenho uma ideia nova para desenvolver. Gosto de jogar, principalmente Pokémon, e amo ouvir música. Minhas bandas favoritas são Black Sabbath, Pearl Jam e Korn.",
+        
+        "Atualmente, eu moro com a minha mãe, Kelly, e com meu irmão de 6 anos, João Pedro. Eles me dão forças todos os dias para nunca desistir. Amo os dois de coração, pois sempre que eu preciso, eles estão lá para me ajudar.",
+        
+        "Minha paixão por Pokémon começou desde pequeno com Pokémon Fire Red. Foi um dos primeiros jogos que eu joguei e zerei na minha vida. Eu amo a temática de RPG, aventura e exploração pelo mundo.",
+        
+        "Quando estou jogando, eu sinto o tempo passar mais rápido. Sua jogatina e evolução lenta me ajudam no controle da ansiedade e também a esvaziar a mente. Gosto de jogar principalmente no trem e em filas grandes.",
+        
+        "Pokémon, para mim, é como se fosse uma terapia, pois nos momentos mais difíceis, jogar era uma das principais coisas que me mantinham animado e calmo."
     ];
 
     const imagens = [
+        "https://moodle.sptech.school/pluginfile.php/25716/user/icon/boost/f1?rev=1698245", // Minha foto
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPd_MLITcZb_rqxuuCJFWtL0kViyRkKMNReg&s", // Minha foto com minha mãe e meu irmão
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR86fNkVgTboxGRyLAE-6dY5Q9ViEQoOG7SRQ&s", // Fire red
+        "../assets/imgs/favoritos/quagsire-1.svg", 
+        "../assets/imgs/favoritos/quagsire-2.svg"
     ];
 
     exibir();
 
     function exibir() {
-        contexto_1.innerHTML = textos[valorAtual];
-        contexto_2.innerHTML = `<img src="${imagens[valorAtual]}">`;
+        contexto_1.innerHTML = `
+            <p>
+                ${textos[valorAtual]}
+            </p>
+        `;
+        contexto_2.innerHTML = `
+            <img src="${imagens[valorAtual]}">
+        `;
 
         if (valorAtual % 2 == 0) {
             contexto.style.flexDirection = "row";
